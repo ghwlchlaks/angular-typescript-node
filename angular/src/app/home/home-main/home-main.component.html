@@ -1,0 +1,74 @@
+
+<div [@openClose]="isOpen ? 'open' : 'closed'">
+  <div class="jumbotron" style="background-image:url('http://localhost:4200/assets/fortnite.jpg')"
+  [ngStyle]="isOpen && {
+    'height' : '100vh',
+    'background-size' : 'cover'
+  } || !isOpen && {
+    'height' : '10vh',
+    'background-size' : '25%'
+  }">
+
+    <div class="container"
+    [ngStyle]="isOpen && {
+      'padding-top': '25%',
+      'padding-left': '15%',
+      'padding-right': '15%'
+    } || !isOpen && {
+      'padding-top': '1%',
+      'padding-left': '1%',
+      'padding-right': '1%'
+    }" id="wrapper">
+
+      <input type="email"
+      [ngStyle]="isOpen && {
+        'float': 'left',
+        'width': '70%',
+        'margin-left': '10px'
+      } || !isOpen && {
+        'float': 'left',
+        'width': '60%',
+        'margin-left': '10px'
+      }" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" [value]="name" #searchName>
+      
+      <ng-select id="platformSelect"
+      [ngStyle]="isOpen && {
+        'float': 'left',
+        'margin-left': '10px',
+        'width': '26%'
+      } || !isOpen && {
+        'float': 'left',
+        'margin-left': '10px',
+        'width': '20%'
+      }" [searchable]="false" ng-selected="platforms[0]" [items]="platforms" [(ngModel)]="selectedPlatform">
+      </ng-select> 
+
+      <button id="searchBtn"
+      [ngStyle]="isOpen && {
+        'margin-left': '10px',
+        'margin-top': '1%',
+        'width': '100%'
+      } || !isOpen && {
+        'margin-left': '10px',
+        'margin-top': '0%',
+        'width': '10%'
+      }" (click)="searchClick(searchName.value, selectedPlatform)" class="btn btn-primary">Submit</button>
+
+    </div>
+  </div>
+  
+  <div class="hor_ads"></div>
+
+
+      <div class="row">
+        <div class="col-sm">
+          <div class="ads"></div>
+        </div>
+        <div class="col-sm">
+            <router-outlet #routerOutlet="outlet">{{name}}, {{searchName.value}}</router-outlet>
+        </div>
+        <div class="col-sm">
+          <div class="ads"></div>
+        </div>
+      </div>
+</div>

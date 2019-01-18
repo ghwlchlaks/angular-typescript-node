@@ -43,3 +43,6 @@ testem.log
 Thumbs.db
 
 .vscode/*
+
+Dockerfile*
+nginx*

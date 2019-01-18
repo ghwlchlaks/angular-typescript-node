@@ -36,4 +36,4 @@ app.get('/', indexController.index);
 app.get('/api/fortnite/users?', fortNiteApiController.getUserId);
 app.get('/api/fortnite/status?', fortNiteApiController.getUserStats);
 
-app.listen(3000, () => console.log('app listening on port 3000!'));
+app.listen(process.env.PORT || 3000, () => console.log('app listening on port ' + (process.env.PORT || 3000)));

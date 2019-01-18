@@ -1,1 +1,1 @@
-export const URL: string = 'mongodb://localhost:27017/test';
+export const URL: string = 'mongodb://' + (process.env.DB_HOST || 'localhost') + ':27017/fortnite';

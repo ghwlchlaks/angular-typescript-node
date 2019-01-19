@@ -90,7 +90,7 @@ export class HomeDetailComponent implements OnInit {
 
   // advanced pie place top setup
   pieResult_matchedPlayed: any[];
-  pieView_matchedPlayed: any[] = [800, 200];
+  pieView_matchedPlayed: any[] = [400, 100];
   pieColorScheme_matchedPlayed = {
     domain: ['#0077f7', '#27a243', '#d53343']
   };
@@ -115,15 +115,16 @@ export class HomeDetailComponent implements OnInit {
   autoScale = true;
 
   constructor(private route: ActivatedRoute, private router: Router, private apiSerivce: FortniteApiService) {
-    if (innerWidth / 2 > 300 && innerHeight / 2.5 > 200) {
-      this.numberCardView_total = [innerWidth / 2, innerHeight / 1.8];
-      this.numberCardView_solo = [innerWidth / 2, innerHeight / 2];
-      this.numberCardView_duo = [innerWidth / 2, innerHeight / 2];
-      this.numberCardView_squad = [innerWidth / 2, innerHeight / 2];
-      this.pieView_matchedPlayed =  [innerWidth / 2, innerHeight / 2.5];
-      this.pieView_placeTop = [innerWidth / 2, innerHeight / 2.5];
-      this.pieView_score = [innerWidth / 2, innerHeight / 1.6];
-    }
+    this.pieView_placeTop = [innerWidth / 2, 200];
+    // if (innerWidth / 2 > 230 && innerHeight / 2.5 > 200) {
+    //   this.numberCardView_total = [innerWidth / 2, innerHeight / 1.8];
+    //   this.numberCardView_solo = [innerWidth / 2, innerHeight / 2];
+    //   this.numberCardView_duo = [innerWidth / 2, innerHeight / 2];
+    //   this.numberCardView_squad = [innerWidth / 2, innerHeight / 2];
+    //   this.pieView_matchedPlayed =  [innerWidth / 2, innerHeight / 2.5];
+    //   this.pieView_placeTop = [innerWidth / 2, innerHeight / 2.5];
+    //   this.pieView_score = [innerWidth / 2, innerHeight / 1.6];
+    // }
   }
 
   ngOnInit() {
@@ -303,14 +304,14 @@ export class HomeDetailComponent implements OnInit {
   onResize(event) {
     const Ewidth: number = event.target.innerWidth;
     const Eheight: number = event.target.innerHeight;
-    if (Ewidth / 2 > 300 && Eheight / 2.5 > 200) {
-      this.numberCardView_total = [Ewidth / 2, Eheight / 1.8];
-      this.numberCardView_solo = [Ewidth / 2, Eheight / 2];
-      this.numberCardView_duo = [Ewidth / 2, Eheight / 2];
-      this.numberCardView_squad = [Ewidth / 2, Eheight / 2];
-      this.pieView_matchedPlayed =  [Ewidth / 2, Eheight / 2.5];
-      this.pieView_placeTop = [Ewidth / 2, Eheight / 2.5];
-      this.pieView_score = [Ewidth / 2, Eheight / 1.6];
-    }
+    // if (Ewidth / 2 > 300 && Eheight / 2.5 > 200) {
+    //   this.numberCardView_total = [Ewidth / 2, Eheight / 1.8];
+    //   this.numberCardView_solo = [Ewidth / 2, Eheight / 2];
+    //   this.numberCardView_duo = [Ewidth / 2, Eheight / 2];
+    //   this.numberCardView_squad = [Ewidth / 2, Eheight / 2];
+    //   this.pieView_matchedPlayed =  [Ewidth / 2, Eheight / 2.5];
+    //   this.pieView_placeTop = [Ewidth / 2, Eheight / 2.5];
+    //   this.pieView_score = [Ewidth / 2, Eheight / 1.6];
+    // }
   }
 }

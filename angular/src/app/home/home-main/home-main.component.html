@@ -26,7 +26,8 @@
       class="form-control col-sm-9" 
       aria-describedby="emailHelp" 
       placeholder="Enter USER ID" 
-      [value]="name" 
+      [value]="name"
+      (keydown.enter)="searchClick(searchName.value, selectedPlatform)"
       #searchName
       >
 

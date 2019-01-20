@@ -1,163 +1,219 @@
 
-  <div *ngIf="!ApiData" class="spinner">
-    <div class="bounce1"></div>
-    <div class="bounce2"></div>
-    <div class="bounce3"></div>
-  </div>
+  <!--loading tag-->
+<div *ngIf="!ApiData" class="spinner">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
 
-  <div class="detail_content" *ngIf="ApiData">
+  <!-- return success detail component-->
+<div class="detail_content" *ngIf="ApiData">
 
+  <!-- user info -->
   <div class="container">
-      <div class="row">
-        <div class="bd-callout bd-callout-info col-sm" style="background-color: #343a40; color: #ffffff;">
-          <h3 class="info_title">USERNAME</h3><hr />
-          <h5 class="info_content">{{apiUsername}}</h5>
-        <!-- {{name}} -->
-        </div>
-        
-        <div class="bd-callout bd-callout-warning col-sm info" style="background-color: #343a40; color: #ffffff;">
-          <h3 class="info_title">PLATFORM</h3><hr />  
-          <h5 class="info_content">{{apiPlatform}}</h5>
-            <!-- {{platform}}  -->
-        </div>
+    <div class="row">
+      <div class="bd-callout bd-callout-info col-sm" style="background-color: #343a40; color: #ffffff;">
+        <h3 class="info_title">USERNAME</h3><hr />
+        <h5 class="info_content">{{apiUsername}}</h5>
+      <!-- {{name}} -->
+      </div>
+      
+      <div class="bd-callout bd-callout-warning col-sm info" style="background-color: #343a40; color: #ffffff;">
+        <h3 class="info_title">PLATFORM</h3><hr />  
+        <h5 class="info_content">{{apiPlatform}}</h5>
+          <!-- {{platform}}  -->
+      </div>
 
-        <div class="bd-callout bd-callout-danger col-sm info" style="background-color: #343a40; color: #ffffff;">
-          <h3 class="info_title">LAST UPDATE</h3><hr />  
-          <h5 class="info_content">{{apiLastUpdate}}</h5>
-        </div>
-        
+      <div class="bd-callout bd-callout-danger col-sm info" style="background-color: #343a40; color: #ffffff;">
+        <h3 class="info_title">LAST UPDATE</h3><hr />  
+        <h5 class="info_content">{{apiLastUpdate}}</h5>
       </div>
     </div>
-
-    <div class="card border-dark mb-3" style="background-color: #5a5ed2; font-weight: bold">
-      <div class="card-header text-white">Total</div>
-      <div class="card-body bg-dark">
-        <div class="row" style="text-align:center;">
-          <div class="col-sm-4"><h4>Kills</h4><h5 class="text-white">{{ApiValue.totals.kills}}</h5></div>
-          <div class="col-sm-4"><h4>Wins</h4><h5 class="text-white">{{ApiValue.totals.wins}}</h5></div>
-          <div class="col-sm-4"><h4>Winrate</h4><h5 class="text-white">{{ApiValue.totals.winrate}}</h5></div>
-        </div>
-        <div class="row" style="text-align:center;">
-          <div class="col-sm-4"><h4>Score</h4><h5 class="text-white">{{ApiValue.totals.score}}</h5></div>
-          <div class="col-sm-4"><h4>KD</h4><h5 class="text-white">{{ApiValue.totals.kd}}</h5></div>
-          <div class="col-sm-4"><h4>HoursPlayed</h4><h5 class="text-white">{{ApiValue.totals.hoursplayed}}</h5></div>
-        </div>
-        <div class="row" style="text-align:center;">
-          <div class="col-sm-6"><h4>MatchedPlayed</h4><h5 class="text-white">{{ApiValue.totals.matchesplayed}}</h5></div>
-          <div class="col-sm-6"><h4>MinutesPlayed</h4><h5 class="text-white">{{ApiValue.totals.minutesplayed}}</h5></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card border-dark bg-info mb-3" style="">
-        <div class="card-header text-white" style="font-weight: bold">PlaceTop</div>
-        <div class="card-body text-white bg-dark">
-          <div class="row">
-            <ngx-charts-pie-chart
-            [scheme]="pieColorScheme_placeTop"
-            [results]="pieResult_placeTop"
-            [gradient]="pieGradient_placeTop"
-            (select)="pieOnSelect_placeTop($event)">
-            </ngx-charts-pie-chart>
-          </div>
-          <div class="row">
-              <div class="col" style="text-align:center;">
-                <div class="row-sm-6">test</div>
-                <div class="row-sm-6">test</div>
-              </div>
-              <div class="col" style="text-align:center;">
-                <div class="row-sm-6">test</div>
-                <div class="row-sm-6">test</div>
-              </div>
-              <div class="col" style="text-align:center;">
-                <div class="row-sm-6">test</div>
-                <div class="row-sm-6">test</div>
-              </div>
-              <div class="col" style="text-align:center;">
-                <div class="row-sm-6">test</div>
-                <div class="row-sm-6">test</div>
-              </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="card border-dark mb-3" style="background-color: #c12bff;">
-          <div class="card-header text-white" style="font-weight: bold">matchedPlayed</div>
-          <div class="card-body text-white bg-dark">
-              <div class="ngxPie2">
-                  <ngx-charts-advanced-pie-chart
-                  [view]="pieView_matchedPlayed"
-                  [scheme]="pieColorScheme_matchedPlayed"
-                  [results]="pieResult_matchedPlayed"
-                  [gradient]="pieGradient_matchedPlayed"
-                  (select)="pieOnSelect_matchedPlayed($event)">
-                  </ngx-charts-advanced-pie-chart>
-                </div>
-          </div>
-        </div>
-
-      <div class="card bg-primary mb-3" style="font-weight: bold;">
-          <div class="card-header text-white">Solo</div>
-          <div class="card-body bg-dark">
-            <div class="row" style="text-align:center;">
-              <div class="col-sm-4"><h4>Kills Solo</h4><h5 class="text-white">{{ApiValue.stats.kills_solo}}</h5></div>
-              <div class="col-sm-4"><h4>Wins Solo</h4><h5 class="text-white">{{ApiValue.stats.kd_solo}}</h5></div>
-              <div class="col-sm-4"><h4>Winrate Solo</h4><h5 class="text-white">{{ApiValue.stats.winrate_solo}}</h5></div>
-            </div>
-            <div class="row" style="text-align:center;">
-              <div class="col-sm-6"><h4>Score Solo</h4><h5 class="text-white">{{ApiValue.stats.score_solo}}</h5></div>
-              <div class="col-sm-6"><h4>MinitesPlayed Solo</h4><h5 class="text-white">{{ApiValue.stats.minutesplayed_solo}}</h5></div>
-            </div>
-          </div>
-        </div>
-    
-
-        <div class="card bg-success mb-3" style="font-weight: bold">
-            <div class="card-header text-white">Duo</div>
-            <div class="card-body bg-dark">
-              <div class="row" style="text-align:center;">
-                  <div class="col-sm-4"><h4>Kills Duo</h4><h5 class="text-white">{{ApiValue.stats.kills_duo}}</h5></div>
-                  <div class="col-sm-4"><h4>Wins Duo</h4><h5 class="text-white">{{ApiValue.stats.kd_duo}}</h5></div>
-                  <div class="col-sm-4"><h4>Winrate Duo</h4><h5 class="text-white">{{ApiValue.stats.winrate_duo}}</h5></div>
-                </div>
-                <div class="row" style="text-align:center;">
-                  <div class="col-sm-6"><h4>Score Duo</h4><h5 class="text-white">{{ApiValue.stats.score_duo}}</h5></div>
-                  <div class="col-sm-6"><h4>MinitesPlayed Duo</h4><h5 class="text-white">{{ApiValue.stats.minutesplayed_duo}}</h5></div>
-                </div>
-            </div>
-          </div>
- 
-          <div class="card bg-danger mb-3" style="font-weight: bold">
-              <div class="card-header text-white">Squad</div>
-              <div class="card-body bg-dark">
-                <div class="row" style="text-align:center;">
-                    <div class="col-sm-4"><h4>Kills Squad</h4><h5 class="text-white">{{ApiValue.stats.kills_squad}}</h5></div>
-                    <div class="col-sm-4"><h4>Wins Squad</h4><h5 class="text-white">{{ApiValue.stats.kd_squad}}</h5></div>
-                    <div class="col-sm-4"><h4>Winrate Squad</h4><h5 class="text-white">{{ApiValue.stats.winrate_squad}}</h5></div>
-                  </div>
-                  <div class="row" style="text-align:center;">
-                    <div class="col-sm-6"><h4>Score Squad</h4><h5 class="text-white">{{ApiValue.stats.score_squad}}</h5></div>
-                    <div class="col-sm-6"><h4>MinitesPlayed Squad</h4><h5 class="text-white">{{ApiValue.stats.minutesplayed_squad}}</h5></div>
-                  </div>
-              </div>
-            </div>
-
-    
-            <div class="card text-white bg-warning mb-3" style="font-weight: bold">
-                <div class="card-header text-white">Score</div>
-                <div class="card-body bg-dark text-white">
-                    <div class="ngxPie3">
-                        <ngx-charts-pie-grid
-                          [view]="pieView_score"
-                          [scheme]="pieColorScheme_score"
-                          [results]="pieResults_score"
-                          (select)="pieOnSelect_score($event)">
-                        </ngx-charts-pie-grid>
-                      </div>
-                </div>
-              </div>
-    
-
   </div>
+
+  <!-- total data -->
+  <div class="card border-dark mb-3" style="background-color: #5a5ed2; font-weight: bold">
+    <div class="card-header text-white">Total</div>
+    <div class="card-body bg-dark">
+      <div class="row" style="text-align:center;">
+        <div class="col-sm-4"><h4>Kills</h4><h5 class="text-white">{{ApiValue.totals.kills}}</h5></div>
+        <div class="col-sm-4"><h4>Wins</h4><h5 class="text-white">{{ApiValue.totals.wins}}</h5></div>
+        <div class="col-sm-4"><h4>Winrate</h4><h5 class="text-white">{{ApiValue.totals.winrate}}</h5></div>
+      </div>
+      <div class="row" style="text-align:center;">
+        <div class="col-sm-4"><h4>Score</h4><h5 class="text-white">{{ApiValue.totals.score}}</h5></div>
+        <div class="col-sm-4"><h4>KD</h4><h5 class="text-white">{{ApiValue.totals.kd}}</h5></div>
+        <div class="col-sm-4"><h4>HoursPlayed</h4><h5 class="text-white">{{ApiValue.totals.hoursplayed}}</h5></div>
+      </div>
+      <div class="row" style="text-align:center;">
+        <div class="col-sm-6"><h4>MatchedPlayed</h4><h5 class="text-white">{{ApiValue.totals.matchesplayed}}</h5></div>
+        <div class="col-sm-6"><h4>MinutesPlayed</h4><h5 class="text-white">{{ApiValue.totals.minutesplayed}}</h5></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PlaceTop -->
+  <div class="card border-dark bg-info mb-3" style="">
+    <div class="card-header text-white" style="font-weight: bold">PlaceTop</div>
+    <div class="card-body bg-dark">
+      <div class="row">
+        <ngx-charts-pie-chart
+        [scheme]="pieColorScheme_placeTop"
+        [results]="pieResult_placeTop"
+        [gradient]="pieGradient_placeTop"
+        (select)="pieOnSelect_placeTop($event)">
+        </ngx-charts-pie-chart>
+      </div>
+      <div class="row">
+        <div class="col" style="text-align:center;">
+          <div class="row-sm-4">Top1</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[0].value}}</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[0].per}}%</div>
+        </div>
+        <div class="col" style="text-align:center;">
+          <div class="row-sm-4">Top3</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[1].value}}</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[1].per}}%</div>
+        </div>
+        <div class="col" style="text-align:center;">
+          <div class="row-sm-4">Top5</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[2].value}}</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[2].per}}%</div>
+        </div>
+        <div class="col" style="text-align:center;">
+          <div class="row-sm-4">Top6</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[3].value}}</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[3].per}}%</div>
+        </div>
+        <div class="col" style="text-align:center;">
+          <div class="row-sm-4">Top10</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[4].value}}</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[4].per}}%</div>
+        </div>
+        <div class="col" style="text-align:center;">
+          <div class="row-sm-4">Top12</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[5].value}}</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[5].per}}%</div>
+        </div>
+        <div class="col" style="text-align:center;">
+          <div class="row-sm-4">Top25</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[6].value}}</div>
+          <div class="row-sm-4 text-white">{{pieData_placeTop[6].per}}%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- MatchedPlayed -->
+<div class="card border-dark mb-3" style="background-color: #c12bff;">
+  <div class="card-header text-white" style="font-weight: bold">MatchedPlayed</div>
+  <div class="card-body bg-dark">
+    <div class="row">
+      <ngx-charts-pie-chart
+      [scheme]="pieColorScheme_matchedPlayed"
+      [results]="pieResult_matchedPlayed"
+      [gradient]="pieGradient_matchedPlayed"
+      (select)="pieOnSelect_matchedPlayed($event)">
+      </ngx-charts-pie-chart>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align:center;">
+        <div class="row-sm-4">Mached Played Solo</div>
+        <div class="row-sm-4 text-white">{{pieData_matchedPlayed[0].value}}</div>
+        <div class="row-sm-4 text-white">{{pieData_matchedPlayed[0].per}}%</div>
+      </div>
+      <div class="col" style="text-align:center;">
+        <div class="row-sm-4">Mached Played Duo</div>
+        <div class="row-sm-4 text-white">{{pieData_matchedPlayed[1].value}}</div>
+        <div class="row-sm-4 text-white">{{pieData_matchedPlayed[1].per}}%</div>
+      </div>
+      <div class="col" style="text-align:center;">
+        <div class="row-sm-4">Mached Played Squad</div>
+        <div class="row-sm-4 text-white">{{pieData_matchedPlayed[2].value}}</div>
+        <div class="row-sm-4 text-white">{{pieData_matchedPlayed[2].per}}%</div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Solo Data -->
+  <div class="card bg-primary mb-3" style="font-weight: bold;">
+    <div class="card-header text-white">Solo</div>
+    <div class="card-body bg-dark">
+      <div class="row" style="text-align:center;">
+        <div class="col-sm-4"><h4>Kills Solo</h4><h5 class="text-white">{{ApiValue.stats.kills_solo}}</h5></div>
+        <div class="col-sm-4"><h4>Wins Solo</h4><h5 class="text-white">{{ApiValue.stats.kd_solo}}</h5></div>
+        <div class="col-sm-4"><h4>Winrate Solo</h4><h5 class="text-white">{{ApiValue.stats.winrate_solo}}</h5></div>
+      </div>
+      <div class="row" style="text-align:center;">
+        <div class="col-sm-6"><h4>Score Solo</h4><h5 class="text-white">{{ApiValue.stats.score_solo}}</h5></div>
+        <div class="col-sm-6"><h4>MinitesPlayed Solo</h4><h5 class="text-white">{{ApiValue.stats.minutesplayed_solo}}</h5></div>
+      </div>
+    </div>
+  </div>
+
+<!-- Duo Data -->
+  <div class="card bg-success mb-3" style="font-weight: bold">
+    <div class="card-header text-white">Duo</div>
+    <div class="card-body bg-dark">
+      <div class="row" style="text-align:center;">
+          <div class="col-sm-4"><h4>Kills Duo</h4><h5 class="text-white">{{ApiValue.stats.kills_duo}}</h5></div>
+          <div class="col-sm-4"><h4>Wins Duo</h4><h5 class="text-white">{{ApiValue.stats.kd_duo}}</h5></div>
+          <div class="col-sm-4"><h4>Winrate Duo</h4><h5 class="text-white">{{ApiValue.stats.winrate_duo}}</h5></div>
+        </div>
+        <div class="row" style="text-align:center;">
+          <div class="col-sm-6"><h4>Score Duo</h4><h5 class="text-white">{{ApiValue.stats.score_duo}}</h5></div>
+          <div class="col-sm-6"><h4>MinitesPlayed Duo</h4><h5 class="text-white">{{ApiValue.stats.minutesplayed_duo}}</h5></div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Squad Data -->
+  <div class="card bg-danger mb-3" style="font-weight: bold">
+    <div class="card-header text-white">Squad</div>
+    <div class="card-body bg-dark">
+      <div class="row" style="text-align:center;">
+          <div class="col-sm-4"><h4>Kills Squad</h4><h5 class="text-white">{{ApiValue.stats.kills_squad}}</h5></div>
+          <div class="col-sm-4"><h4>Wins Squad</h4><h5 class="text-white">{{ApiValue.stats.kd_squad}}</h5></div>
+          <div class="col-sm-4"><h4>Winrate Squad</h4><h5 class="text-white">{{ApiValue.stats.winrate_squad}}</h5></div>
+        </div>
+        <div class="row" style="text-align:center;">
+          <div class="col-sm-6"><h4>Score Squad</h4><h5 class="text-white">{{ApiValue.stats.score_squad}}</h5></div>
+          <div class="col-sm-6"><h4>MinitesPlayed Squad</h4><h5 class="text-white">{{ApiValue.stats.minutesplayed_squad}}</h5></div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Score Data -->
+  <div class="card bg-warning mb-3" style="font-weight: bold">
+    <div class="card-header text-white">Score</div>
+    <div class="card-body bg-dark">
+      <div class="row">
+        <ngx-charts-pie-chart
+          [scheme]="pieColorScheme_score"
+          [results]="pieResults_score"
+          (select)="pieOnSelect_score($event)">
+        </ngx-charts-pie-chart>
+      </div>
+      <div class="row">
+          <div class="col" style="text-align:center;">
+            <div class="row-sm-4">Score Solo</div>
+            <div class="row-sm-4 text-white">{{pieData_score[0].value}}</div>
+            <div class="row-sm-4 text-white">{{pieData_score[0].per}}%</div>
+          </div>
+          <div class="col" style="text-align:center;">
+            <div class="row-sm-4">Score Duo</div>
+            <div class="row-sm-4 text-white">{{pieData_score[1].value}}</div>
+            <div class="row-sm-4 text-white">{{pieData_score[1].per}}%</div>
+          </div>
+          <div class="col" style="text-align:center;">
+            <div class="row-sm-4">Score Squad</div>
+            <div class="row-sm-4 text-white">{{pieData_score[2].value}}</div>
+            <div class="row-sm-4 text-white">{{pieData_score[2].per}}%</div>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+</div>
 

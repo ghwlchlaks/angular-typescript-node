@@ -29,8 +29,11 @@ export class HomeDetailComponent implements OnInit {
   numberCardData_duo: Array<INumberCardData>;
   numberCardData_squad: Array<INumberCardData>;
   pieData_placeTop: Array<IPieData>;
+  pieData_placeTop_sum = 0;
   pieData_matchedPlayed: Array<IPieData>;
+  pieData_matchedPlayed_sum = 0;
   pieData_score: Array<IPieData>;
+  pieData_score_sum = 0;
 
   // total number card setup
   numberCardSingle_total: any[];
@@ -159,13 +162,13 @@ export class HomeDetailComponent implements OnInit {
     this.numberCardData_duo = [];
     this.numberCardData_squad = [];
     this.pieData_placeTop = [
-      {name : 'top1', value: 0},
-      {name : 'top3', value: 0},
-      {name : 'top5', value: 0},
-      {name : 'top6', value: 0},
-      {name : 'top10', value: 0},
-      {name : 'top12', value: 0},
-      {name : 'top25', value: 0},
+      {name : 'top1', value: 0, per: 0},
+      {name : 'top3', value: 0, per: 0},
+      {name : 'top5', value: 0, per: 0},
+      {name : 'top6', value: 0, per: 0},
+      {name : 'top10', value: 0, per: 0},
+      {name : 'top12', value: 0, per: 0},
+      {name : 'top25', value: 0, per: 0},
     ];
     this.pieData_matchedPlayed = [];
     this.pieData_score = [];
@@ -198,9 +201,11 @@ export class HomeDetailComponent implements OnInit {
         });
         if (index === 7) {
           // grid pie score_solo
+          this.pieData_score_sum += ApiValue.stats[value];
           this.pieData_score.push({
             'name': value,
-            'value': ApiValue.stats[value]
+            'value': ApiValue.stats[value],
+            'per': 0
           });
         }
       } else if (index === 10 || index === 15 || index === 16 || index === 17 || index === 18) {
@@ -211,9 +216,11 @@ export class HomeDetailComponent implements OnInit {
         });
         if (index === 17) {
           // grid pie score_duo
+          this.pieData_score_sum += ApiValue.stats[value];
           this.pieData_score.push({
             'name': value,
-            'value': ApiValue.stats[value]
+            'value': ApiValue.stats[value],
+            'per': 0
           });
         }
       } else if (index === 20 || index === 25 || index === 26 || index === 27 || index === 28) {
@@ -224,39 +231,59 @@ export class HomeDetailComponent implements OnInit {
         });
         if (index === 27) {
           // grid pie score_squad
+          this.pieData_score_sum += ApiValue.stats[value];
           this.pieData_score.push({
             'name': value,
-            'value': ApiValue.stats[value]
+            'value': ApiValue.stats[value],
+            'per': 0
           });
         }
       } else if (index === 1 || index === 11 || index === 21) {
         // top1_solo top1_duo top1_squad
         this.pieData_placeTop[0].value += ApiValue.stats[value];
+        this.pieData_placeTop_sum += ApiValue.stats[value];
       } else if (index === 22) {
         // top3_squad
         this.pieData_placeTop[1].value += ApiValue.stats[value];
+        this.pieData_placeTop_sum += ApiValue.stats[value];
       } else if (index === 12) {
         // top5_duo
         this.pieData_placeTop[2].value += ApiValue.stats[value];
+        this.pieData_placeTop_sum += ApiValue.stats[value];
       } else if (index === 23) {
         // top6_squad
         this.pieData_placeTop[3].value += ApiValue.stats[value];
+        this.pieData_placeTop_sum += ApiValue.stats[value];
       } else if (index === 2) {
         // top10_solo
         this.pieData_placeTop[4].value += ApiValue.stats[value];
+        this.pieData_placeTop_sum += ApiValue.stats[value];
       } else if (index === 13) {
         // top12_duo
         this.pieData_placeTop[5].value += ApiValue.stats[value];
+        this.pieData_placeTop_sum += ApiValue.stats[value];
       } else if (index === 3) {
         // top25_solo
         this.pieData_placeTop[6].value += ApiValue.stats[value];
+        this.pieData_placeTop_sum += ApiValue.stats[value];
       } else if (index === 4 || index === 14 || index === 24) {
         // matchesplayed_solo, matchesplayed_duo, matchesplayed_squad
+        this.pieData_matchedPlayed_sum += ApiValue.stats[value];
         this.pieData_matchedPlayed.push({
           'name': value,
-          'value': ApiValue.stats[value]
+          'value': ApiValue.stats[value],
+          'per': 0
         });
       }
+    });
+    this.pieData_placeTop.forEach(element => {
+      element.per = Math.round(element.value / this.pieData_placeTop_sum * 100);
+    });
+    this.pieData_score.forEach(element => {
+      element.per = Math.round(element.value / this.pieData_score_sum * 100);
+    });
+    this.pieData_matchedPlayed.forEach(element => {
+      element.per = Math.round(element.value / this.pieData_matchedPlayed_sum * 100);
     });
     this.assignCharts();
   }

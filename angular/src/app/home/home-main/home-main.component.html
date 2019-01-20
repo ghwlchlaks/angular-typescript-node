@@ -6,9 +6,8 @@
     'background-size' : 'cover'
   } || !isOpen && {
     'height' : '10vh',
-    'background-size' : '25%'
+    'width': '100%'
   }">
-
     <div class="container"
     [ngStyle]="isOpen && {
       'padding-top': '25%',
@@ -20,43 +19,67 @@
       'padding-right': '1%'
     }" id="wrapper">
 
+  <ng-container *ngIf="isOpen; else elseTemplate">
+    <div class="row">
       <input type="email"
-      [ngStyle]="isOpen && {
-        'float': 'left',
-        'width': '70%',
-        'margin-left': '10px'
-      } || !isOpen && {
-        'float': 'left',
-        'width': '60%',
-        'margin-left': '10px'
-      }" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" [value]="name" #searchName>
-      
+      style="float:left;"
+      class="form-control col-sm-9" 
+      aria-describedby="emailHelp" 
+      placeholder="Enter USER ID" 
+      [value]="name" 
+      #searchName
+      >
+
       <ng-select id="platformSelect"
-      [ngStyle]="isOpen && {
-        'float': 'left',
-        'margin-left': '10px',
-        'width': '26%'
-      } || !isOpen && {
-        'float': 'left',
-        'margin-left': '10px',
-        'width': '20%'
-      }" [searchable]="false" ng-selected="platforms[0]" [items]="platforms" [(ngModel)]="selectedPlatform">
+      class="col-sm-3"
+      style="float:left; padding-right:0; padding-left: 0;"
+      [searchable]="false" 
+      ng-selected="platforms[0]" 
+      [items]="platforms" 
+      [(ngModel)]="selectedPlatform">
+      </ng-select> 
+    </div>
+
+    <div class="row">
+      <button id="searchBtn"
+      class="col-sm-12 btn btn-primary"
+      style="margin-top:1%;"
+      (click)="searchClick(searchName.value, selectedPlatform)">
+      Submit
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #elseTemplate>
+    <div class="row">
+      <input type="email"
+      class="col-sm-6 form-control"
+      aria-describedby="emailHelp"
+      placeholder="Enter USER ID" 
+      [value]="name" 
+      #searchName
+      >
+      <ng-select id="platformSelect"
+      class="col-sm-3"
+      style="padding-right:0; padding-left: 0; "
+      [searchable]="false" 
+      ng-selected="platforms[0]" 
+      [items]="platforms" 
+      [(ngModel)]="selectedPlatform">
       </ng-select> 
 
       <button id="searchBtn"
-      [ngStyle]="isOpen && {
-        'margin-left': '10px',
-        'margin-top': '1%',
-        'width': '100%'
-      } || !isOpen && {
-        'margin-left': '10px',
-        'margin-top': '0%',
-        'width': '10%'
-      }" (click)="searchClick(searchName.value, selectedPlatform)" class="btn btn-primary">Submit</button>
-
-    </div>
-  </div>
+      class="col-sm-3 btn btn-primary"
+      style="margin-top:0%;"
+      (click)="searchClick(searchName.value, selectedPlatform)"
+      >Submit</button>
+      </div>
+    </ng-template>
   
+
+  </div>
+</div>
+
   <div class="hor_ads"></div>
 
 
@@ -65,10 +88,11 @@
           <div class="ads"></div>
         </div>
         <div class="col-sm">
-            <router-outlet #routerOutlet="outlet">{{name}}, {{searchName.value}}</router-outlet>
+            <router-outlet #routerOutlet="outlet"></router-outlet>
         </div>
         <div class="col-sm">
           <div class="ads"></div>
         </div>
       </div>
+
 </div>

@@ -4,5 +4,6 @@ export interface INumberCardData {
 }
 export interface IPieData {
     name: String;
-    value: Number;
+    value: number;
+    per: number;
 }

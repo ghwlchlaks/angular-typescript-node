@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 
 import { d_userStats } from '../datas/d_userStats';
 import { IReturnStats, IUserStats } from '../types/t_userStats';
@@ -117,23 +118,17 @@ export class HomeDetailComponent implements OnInit {
   // line, area
   autoScale = true;
 
-  constructor(private route: ActivatedRoute, private router: Router, private apiSerivce: FortniteApiService) {
+  constructor(private route: ActivatedRoute, private router: Router, private apiSerivce: FortniteApiService, private meta: Meta) {
     this.pieView_placeTop = [innerWidth / 2, 200];
-    // if (innerWidth / 2 > 230 && innerHeight / 2.5 > 200) {
-    //   this.numberCardView_total = [innerWidth / 2, innerHeight / 1.8];
-    //   this.numberCardView_solo = [innerWidth / 2, innerHeight / 2];
-    //   this.numberCardView_duo = [innerWidth / 2, innerHeight / 2];
-    //   this.numberCardView_squad = [innerWidth / 2, innerHeight / 2];
-    //   this.pieView_matchedPlayed =  [innerWidth / 2, innerHeight / 2.5];
-    //   this.pieView_placeTop = [innerWidth / 2, innerHeight / 2.5];
-    //   this.pieView_score = [innerWidth / 2, innerHeight / 1.6];
-    // }
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.name = params['name'];
       this.platform = params['platform'];
+
+      this.meta.updateTag({name: 'description', content: 'Check out ' + this.name + '\'s fortnite score!'});
+      this.meta.updateTag({name: 'og:description', content: 'Check out ' + this.name + '\'s fortnite score!'});
 
       this.initialApiData();
       this.initialChartsData();

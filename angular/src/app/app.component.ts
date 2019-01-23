@@ -11,7 +11,6 @@ export class AppComponent {
     this.meta.addTags([
       {name: 'title', content: 'Fortnite Stats Leaderboard PC/XBOX/PS4'},
       {name: 'description', content: 'Fortnite Stats Leaderboard PC/XBOX/PS4'},
-      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {name: 'robots', content: 'INDEX, FOLLOW'},
       {name: 'author', content: 'JiHo CHoi'},
       {name: 'keywords', content: 'Fortnite, Leaderboard, Stats'},

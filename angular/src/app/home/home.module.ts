@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import { AdsenseModule } from 'ng2-adsense';
 
 import { HomeMainComponent } from './home-main/home-main.component';
 import { HomeDetailComponent } from './home-detail/home-detail.component';
@@ -23,7 +24,11 @@ import { FortniteApiService } from '../services/fortnite-api.service';
     NgxChartsModule,
     HomeRoutes,
     NgSelectModule,
-    HttpModule
+    HttpModule,
+    AdsenseModule.forRoot({
+      adClient: 'ca-pub-8739147803341265',
+      adSlot: 9196284235,
+    })
   ],
   providers: [FortniteApiService]
 })

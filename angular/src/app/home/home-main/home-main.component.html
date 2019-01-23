@@ -81,18 +81,30 @@
   </div>
 </div>
 
-  <div class="hor_ads"></div>
+  <div class="hor_ads">
+    <ng-adsense
+      [adClient]="'ca-pub-8739147803341265'"
+      [adSlot]="9196284235"
+      [display]="'inline-block'"
+      [fullWidthResponsive]="true"
+      [height]="150">
+    </ng-adsense>
+  </div>
 
 
       <div class="row">
         <div class="col-sm">
-          <div class="ads"></div>
+          <div class="ads">
+            <ng-adsense></ng-adsense>
+          </div>
         </div>
         <div class="col-sm">
             <router-outlet #routerOutlet="outlet"></router-outlet>
         </div>
         <div class="col-sm">
-          <div class="ads"></div>
+          <div class="ads">
+            <ng-adsense></ng-adsense>
+          </div>
         </div>
       </div>
 

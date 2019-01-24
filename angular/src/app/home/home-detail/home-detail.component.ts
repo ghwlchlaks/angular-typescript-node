@@ -129,6 +129,7 @@ export class HomeDetailComponent implements OnInit {
 
       this.meta.updateTag({name: 'description', content: 'Check out ' + this.name + '\'s fortnite score!'});
       this.meta.updateTag({name: 'og:description', content: 'Check out ' + this.name + '\'s fortnite score!'});
+      this.meta.updateTag({property: 'og:url', content: 'http://ghwlchlaks.tk:8080' + this.router.url});
 
       this.initialApiData();
       this.initialChartsData();

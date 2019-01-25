@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'fortnite-api-angular'}),
     BrowserAnimationsModule,
     NgbModule,
     FontAwesomeModule,

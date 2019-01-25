@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  server_name: 'http://localhost:3000'
+  server_name: 'http://localhost:3000',
+  universal_port: 4000
 };
 
 /*

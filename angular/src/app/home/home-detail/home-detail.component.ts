@@ -134,7 +134,7 @@ export class HomeDetailComponent implements OnInit {
       this.initialApiData();
       this.initialChartsData();
 
-      this.apiSerivce.getData(this.name, this.platform).subscribe((result) => {
+      this.apiSerivce.getUserStatsData(this.name, this.platform).subscribe((result) => {
         this.ApiData = result;
         this.ApiStatus = this.ApiData.status;
         this.ApiValue = this.ApiData.value;

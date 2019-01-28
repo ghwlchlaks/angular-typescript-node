@@ -14,9 +14,10 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HomeNotFoundComponent } from './home-not-found/home-not-found.component';
 
 import { FortniteApiService } from '../services/fortnite-api.service';
+import { HomeRankingComponent } from './home-ranking/home-ranking.component';
 
 @NgModule({
-  declarations: [HomeMainComponent, HomeDetailComponent, HomeNotFoundComponent],
+  declarations: [HomeMainComponent, HomeDetailComponent, HomeNotFoundComponent, HomeRankingComponent],
   imports: [
     CommonModule,
     NgbModule,

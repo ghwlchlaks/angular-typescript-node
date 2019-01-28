@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 
 import * as PfortNiteApi from '../config/fortnite-api';
 import fortniteModel, { IUserStatsModel } from '../models/fortniteModel';
-import { IGetUserId, IGetUserStats } from '../types/fortnite-types';
+import { IGetTop10, IGetUserId, IGetUserStats} from '../types/fortnite-types';
 
 export let getUserId = (req: Request, res: Response) => {
     const userId: string = req.query.userId;
@@ -26,7 +26,7 @@ export let getUserId = (req: Request, res: Response) => {
 
 const callGetUserIdApi = async (userId: string): Promise<IGetUserId>  => {
     let result: Promise<IGetUserId>;
-    return await axios.get(PfortNiteApi.PgetUserId, {
+    return await axios.get(PfortNiteApi.PGetUserId, {
         params: {
             username: userId,
         },
@@ -49,7 +49,7 @@ const callGetUserIdApi = async (userId: string): Promise<IGetUserId>  => {
 
 const callGetUserStatsApi = async (id: string, plat: string): Promise<IGetUserStats> => {
     let result: Promise<IGetUserStats>;
-    return await axios.get(PfortNiteApi.PgetUserStats, {
+    return await axios.get(PfortNiteApi.PGetUserStats, {
         params: {
             platform: plat,
             user_id: id,
@@ -145,4 +145,27 @@ const createStats = (userIdApiData: IGetUserId , userStatsApiData: IGetUserStats
     const mergeData = Object.assign(userIdApiData, userStatsApiData);
     const fortnite = new fortniteModel(mergeData);
     return fortnite.save();
+};
+
+export let getTop10 = (req: Request, res: Response) => {
+    axios.get(
+        PfortNiteApi.PGetTop10, {
+            params: {
+                window: 'top_10_kills',
+            },
+        },
+    ).then((response: AxiosResponse) => {
+            if (response.data && response.status >= 200 && response.status < 300) {
+                if (response.data.error) {
+                    res.send({status: false, msg: 'get10 player response data error'});
+                } else {
+                    const result: IGetTop10 = response.data.entries;
+                    res.send({status: true, value: result});
+                }
+            } else {
+                res.send({status: false, msg: 'top10 empty'});
+            }
+        }).catch((error: AxiosError) => {
+            console.error(error);
+        });
 };

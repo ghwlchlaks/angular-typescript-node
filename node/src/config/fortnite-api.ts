@@ -8,11 +8,14 @@ export const PAllItem: string = PfortNiteApiUrl + 'items/list';
 export const PSpecItem: string = PfortNiteApiUrl + 'item/get';
 
 /* get user */
-export const PgetUserId: string = PfortNiteApiUrl + 'users/id';
-export const PgetUserStats: string = PfortNiteApiUrl + 'users/public/br_stats';
+export const PGetUserId: string = PfortNiteApiUrl + 'users/id';
+export const PGetUserStats: string = PfortNiteApiUrl + 'users/public/br_stats';
 
 /* get challenges */
-export const PgetChallenges: string = PfortNiteApiUrl + 'challenges/get';
+export const PGetChallenges: string = PfortNiteApiUrl + 'challenges/get';
 
 /* get in-game news */
-export const PgetBRNews: string = PfortNiteApiUrl + 'br_motd/get';
+export const PGetBRNews: string = PfortNiteApiUrl + 'br_motd/get';
+
+/* get Top 10 players */
+export const PGetTop10: string = PfortNiteApiUrl + 'leaderboards/get';

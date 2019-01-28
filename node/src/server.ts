@@ -20,6 +20,7 @@ mongoose.connect(mongoUrl, {useNewUrlParser: true ,  useFindAndModify: false }, 
     }
 });
 
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
 app.use('*', (req: Request, res: Response, next: NextFunction) => {
@@ -35,5 +36,6 @@ app.get('/', indexController.index);
 /* fortNiteApi routes */
 app.get('/api/fortnite/users?', fortNiteApiController.getUserId);
 app.get('/api/fortnite/status?', fortNiteApiController.getUserStats);
+app.get('/api/fortnite/getTop10', fortNiteApiController.getTop10);
 
 app.listen(process.env.PORT || 3000, () => console.log('app listening on port ' + (process.env.PORT || 3000)));

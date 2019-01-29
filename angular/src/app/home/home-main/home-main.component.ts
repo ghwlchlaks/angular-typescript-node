@@ -23,7 +23,6 @@ export class HomeMainComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      // console.log(this.router.url, this.name);
       if (this.router.url.includes('/not-found')) {
         this.name = params['name'];
         this.isOpen = false;
@@ -32,6 +31,7 @@ export class HomeMainComponent implements OnInit {
       } else {
         this.isOpen = false;
         this.name = params['name'];
+        this.selectedPlatform = params['platform'];
       }
     });
   }

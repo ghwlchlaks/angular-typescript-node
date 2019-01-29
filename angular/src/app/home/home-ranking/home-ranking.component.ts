@@ -22,8 +22,8 @@ export class HomeRankingComponent implements OnInit {
 
   searchUserStats(userData: IGetTop10) {
     const username = userData.username;
-    let platform = userData.platform;
-    if (platform === 'xb1') {
+    let platform = userData.platform.toUpperCase();
+    if (platform === 'XB1') {
       platform = 'XBOX';
     }
     this.router.navigate(['/detail'], {queryParams: {name: username, platform: platform}});

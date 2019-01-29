@@ -19,62 +19,47 @@
       'padding-right': '1%'
     }" id="wrapper">
 
+<!-- isOpen true일때  -->
   <ng-container *ngIf="isOpen; else elseTemplate">
     <div class="row">
-      <input type="email"
-      style="float:left;"
-      class="form-control col-sm-9" 
-      aria-describedby="emailHelp" 
-      placeholder="Enter USER ID" 
-      [value]="name"
-      (keydown.enter)="searchClick(searchName.value, selectedPlatform)"
-      #searchName
-      >
-
-      <ng-select id="platformSelect"
-      class="col-sm-3"
-      style="float:left; padding-right:0; padding-left: 0;"
-      [searchable]="false" 
-      ng-selected="platforms[0]" 
-      [items]="platforms" 
-      [(ngModel)]="selectedPlatform">
-      </ng-select> 
+      <div class="input-group">
+        <input type="text" class="col-sm-9" style="float:left;" #searchName [value]="name" placeholder="Enter USER ID" (keydown.enter)="searchClick(searchName.value, selectedPlatform)">
+        <div class="input-group-append col-sm-3" style="float:left; padding-right:0; padding-left: 0;">
+          <select class="custom-select" [(ngModel)]="selectedPlatform">
+            <option *ngFor="let platform of platforms" >{{platform}}</option>
+          </select>
+        </div>
+      </div>
     </div>
 
     <div class="row">
       <button id="searchBtn"
-      class="col-sm-12 btn btn-primary"
+      class="col-sm-12 btn btn-dark"
       style="margin-top:1%;"
       (click)="searchClick(searchName.value, selectedPlatform)">
-      Submit
+      Get Stats
       </button>
     </div>
   </ng-container>
 
+<!-- isOpen false 일때  -->
   <ng-template #elseTemplate>
     <div class="row">
-      <input type="email"
-      class="col-sm-6 form-control"
-      aria-describedby="emailHelp"
-      placeholder="Enter USER ID" 
-      [value]="name" 
-      #searchName
-      >
-      <ng-select id="platformSelect"
-      class="col-sm-3"
-      style="padding-right:0; padding-left: 0; "
-      [searchable]="false" 
-      ng-selected="platforms[0]" 
-      [items]="platforms" 
-      [(ngModel)]="selectedPlatform">
-      </ng-select> 
+      <div class="input-group col-sm-9" style="padding-right:0%; padding-left: 0%;">
+        <input type="text" class="col-sm-9" style="float:left;" #searchName [value]="name" placeholder="Enter USER ID" (keydown.enter)="searchClick(searchName.value, selectedPlatform)">
+        <div class="input-group-append col-sm-3" style="float:left; padding-right:0; padding-left: 0;">
+          <select class="custom-select" [(ngModel)]="selectedPlatform">
+            <option *ngFor="let platform of platforms">{{platform}}</option>
+          </select>
+        </div>
+      </div>
 
       <button id="searchBtn"
-      class="col-sm-3 btn btn-primary"
-      style="margin-top:0%;"
+      class="col-sm-3 btn btn-dark"
+      style="margin-top:0%; "
       (click)="searchClick(searchName.value, selectedPlatform)"
-      >Submit</button>
-      </div>
+      >Get Stats</button>
+    </div>
     </ng-template>
   
 

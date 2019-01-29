@@ -1,5 +1,5 @@
 .jumbotron{
-    height: 100vh;
+    height: 70vh;
     padding-top: 0%;
 }
 #wrapper {
@@ -44,4 +44,18 @@
 content: "";
 display: table;
 clear: both;
+}
+
+
+/* logo css */
+#main_title{
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0px 0px 6px 0px;
+    font-size: 90px;
+    line-height: 90px;
+    letter-spacing: -2px;
+    text-align: center;
+    font-weight: bold;
 }

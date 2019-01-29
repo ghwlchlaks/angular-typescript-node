@@ -1,23 +1,28 @@
 
 <div [@openClose]="isOpen ? 'open' : 'closed'">
+
+    <div id="main_title">Fortnite Stats!</div>
+
   <div class="jumbotron" style="background-image:url('assets/fortnite.jpg')"
   [ngStyle]="isOpen && {
-    'height' : '100vh',
+    'height' : '70vh',
     'background-size' : 'cover'
   } || !isOpen && {
     'height' : '10vh',
     'width': '100%'
   }">
-    <div class="container"
-    [ngStyle]="isOpen && {
-      'padding-top': '25%',
-      'padding-left': '15%',
-      'padding-right': '15%'
-    } || !isOpen && {
-      'padding-top': '1%',
-      'padding-left': '1%',
-      'padding-right': '1%'
-    }" id="wrapper">
+
+  <div class="container"
+  [ngStyle]="isOpen && {
+    'padding-top': '25%',
+    'padding-left': '15%',
+    'padding-right': '15%'
+  } || !isOpen && {
+    'padding-top': '1%',
+    'padding-left': '1%',
+    'padding-right': '1%'
+  }" id="wrapper">
+    
 
 <!-- isOpen true일때  -->
   <ng-container *ngIf="isOpen; else elseTemplate">

@@ -1,9 +1,15 @@
 export interface IReturnTop10 {
     'status': boolean;
-    'value': Array<IGetTop10>;
+    'value': IGetTop10;
 }
-
-export interface IGetTop10 {
+interface IGetTop10 {
+    _id: string;
+    entries: Array<ITop10>;
+    lastupdate: string;
+    __v: Number;
+}
+export interface ITop10 {
+    _id: string;
     uid: string;
     username: string;
     kills: string;

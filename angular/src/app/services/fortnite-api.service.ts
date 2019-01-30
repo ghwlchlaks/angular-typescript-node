@@ -21,7 +21,7 @@ export class FortniteApiService {
   }
 
   getTop10Data(): Observable<IReturnTop10> {
-    return this.http.get( environment.server_name + '/api/fornite/getTop10')
+    return this.http.get( environment.server_name + '/api/fortnite/getTop10')
     .map((data: Response) => data.json());
   }
 }

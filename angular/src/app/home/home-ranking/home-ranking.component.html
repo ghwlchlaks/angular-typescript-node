@@ -24,24 +24,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let top10Data of top10Datas" (click)="searchUserStats(top10Data)" style="cursor:pointer;">
+        <tr *ngFor="let top10ApiValue of top10ApiValues" (click)="searchUserStats(top10ApiValue)" style="cursor:pointer;">
           <th scope="row" class="text-white">
-            #{{top10Data.rank}}
+            #{{top10ApiValue.rank}}
           </th>
           <td class="text-white">
-            {{top10Data.username}}
+            {{top10ApiValue.username}}
           </td>
           <td class="text-white">
-            {{top10Data.kills}}
+            {{top10ApiValue.kills}}
           </td>
           <td class="text-white">
-            {{top10Data.wins}}
+            {{top10ApiValue.wins}}
           </td>
           <td class="text-white">
-            {{top10Data.score}}
+            {{top10ApiValue.score}}
           </td>
           <td class="text-white">
-            {{top10Data.kd}}
+            {{top10ApiValue.kd}}
           </td>
         </tr>
       </tbody>

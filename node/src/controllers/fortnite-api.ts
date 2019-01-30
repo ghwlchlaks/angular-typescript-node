@@ -172,17 +172,14 @@ export let getTop10 = (req: Request, res: Response) => {
                 return false;
             }
         });
-        console.log(isCheck);
         if (isCheck) {
             /* 시간안에 값이 존재할때 */
-            console.log(10);
             return isCheck;
         } else {
             /* 시간안에 값이 존재 하지 않을 때 */
-            console.log(11);
             const data: ITop10 = await callTop10Api();
             const saveData: IGetTop10 = await createTop10(data);
-            console.log(saveData);
+            // console.log(saveData);
             return saveData;
         }
     };

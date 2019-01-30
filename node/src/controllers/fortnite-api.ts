@@ -3,8 +3,11 @@ import { Request, Response } from 'express';
 
 import * as PfortNiteApi from '../config/fortnite-api';
 import fortniteModel, { IUserStatsModel } from '../models/fortniteModel';
+import top10, {ITop10} from '../models/rankingModel';
+
 import { IGetTop10, IGetUserId, IGetUserStats} from '../types/fortnite-types';
 
+/* user 기본 아이디 가져오기 api */
 export let getUserId = (req: Request, res: Response) => {
     const userId: string = req.query.userId;
 
@@ -24,6 +27,7 @@ export let getUserId = (req: Request, res: Response) => {
     });
 };
 
+/* user 기본 아이디 가져오기 api 요청*/
 const callGetUserIdApi = async (userId: string): Promise<IGetUserId>  => {
     let result: Promise<IGetUserId>;
     return await axios.get(PfortNiteApi.PGetUserId, {
@@ -47,6 +51,7 @@ const callGetUserIdApi = async (userId: string): Promise<IGetUserId>  => {
     });
 };
 
+/* userstats call api 요청 */
 const callGetUserStatsApi = async (id: string, plat: string): Promise<IGetUserStats> => {
     let result: Promise<IGetUserStats>;
     return await axios.get(PfortNiteApi.PGetUserStats, {
@@ -72,6 +77,7 @@ const callGetUserStatsApi = async (id: string, plat: string): Promise<IGetUserSt
     });
 };
 
+/* userstats 구하는 api */
 export let getUserStats = (req: Request, res: Response) => {
     const userId: string = req.query.userId;
     let platform: string = req.query.platform;
@@ -135,37 +141,95 @@ export let getUserStats = (req: Request, res: Response) => {
         console.error(err);
     });
 };
+
+/* 새 userstats값 가져왔을때 db 업데이트 */
 const updateStats = (userIdApiData: IGetUserId , userStatsApiData: IGetUserStats) => {
     const currentTime = { lastupdate : Date.now()};
     const mergeData = Object.assign(userIdApiData, userStatsApiData, currentTime);
     return fortniteModel.findOneAndUpdate({uid : userIdApiData.uid}, {$set : mergeData});
 };
 
+/* 조회하지않은 사용자가 검색했을때 저장 */
 const createStats = (userIdApiData: IGetUserId , userStatsApiData: IGetUserStats): Promise<IUserStatsModel> => {
     const mergeData = Object.assign(userIdApiData, userStatsApiData);
     const fortnite = new fortniteModel(mergeData);
     return fortnite.save();
 };
 
+/* top10 ranking 구하는 api */
 export let getTop10 = (req: Request, res: Response) => {
-    axios.get(
+    const main = async () => {
+        /* 시간 체크 */
+        const isCheck: IGetTop10 = await top10.findOne({lastupdate : {$lte: (Date.now() - ( 1 * 60 * 1000 ))}}
+        , (err, result) => {
+            if (err) {
+                console.error(err);
+                return false;
+            }
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        console.log(isCheck);
+        if (isCheck) {
+            /* 시간안에 값이 존재할때 */
+            console.log(10);
+            return isCheck;
+        } else {
+            /* 시간안에 값이 존재 하지 않을 때 */
+            console.log(11);
+            const data: ITop10 = await callTop10Api();
+            const saveData: IGetTop10 = await createTop10(data);
+            console.log(saveData);
+            return saveData;
+        }
+    };
+
+    main().then((result: any) => {
+        if (result) {
+            res.send({status: true, value: result});
+        } else {
+            res.send({status: true, msg: 'no ranking data'});
+        }
+    }).catch((err) => {
+        console.error(err);
+    });
+};
+
+/* top10 api call 요청 */
+const callTop10Api = async (): Promise<ITop10> => {
+    let result: Promise<ITop10>;
+    return await axios.get(
         PfortNiteApi.PGetTop10, {
             params: {
                 window: 'top_10_kills',
             },
         },
     ).then((response: AxiosResponse) => {
-            if (response.data && response.status >= 200 && response.status < 300) {
-                if (response.data.error) {
-                    res.send({status: false, msg: 'get10 player response data error'});
-                } else {
-                    const result: IGetTop10 = response.data.entries;
-                    res.send({status: true, value: result});
-                }
+        if (response.data && response.status >= 200 && response.status < 300) {
+            result = response.data.entries;
+            if (response.data.error) {
+                return null;
             } else {
-                res.send({status: false, msg: 'top10 empty'});
+                return result;
             }
-        }).catch((error: AxiosError) => {
-            console.error(error);
-        });
+        } else {
+            console.log('error');
+            return null;
+        }
+    }).catch((error: AxiosError) => {
+        console.error(error);
+        return result;
+    });
+};
+
+/* top10 ranking save */
+const createTop10 = async (data: IGetTop10): Promise<ITop10> => {
+    const top10Model: ITop10 = new top10({
+        entries: data,
+        lastupdate: Date.now(),
+    });
+    return top10Model.save();
 };

@@ -14,7 +14,14 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.ts$/, loader: 'ts-loader' }
+      { 
+        test: /\.ts$/,
+        loader: 'ts-loader' 
+      },
+      {
+        test: /(\\|\/)@angular(\\|\/)core(\\|\/).+\.js$/,
+        parser: { system: true },
+      }
     ]
   },
   plugins: [

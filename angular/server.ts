@@ -49,7 +49,9 @@ app.get('*.*', express.static(join(DIST_FOLDER, 'fortnite-api-angular')));
 app.get('*', (req, res) => {
   res.render(join(DIST_FOLDER, 'fortnite-api-angular', 'index.html'), { req });
 });
-
+app.get('/sitemap.xml', (req, res) => {
+    res.sendFile(join(DIST_FOLDER, 'fortnite-api-angular', 'sitemap.xml'));
+  });
 // Start up the Node server
 app.listen(PORT, () => {
   console.log(`Node server listening on http://localhost:${PORT}`);
